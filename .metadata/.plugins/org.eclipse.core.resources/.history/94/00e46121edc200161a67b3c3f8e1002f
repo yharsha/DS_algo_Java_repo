@@ -1,0 +1,45 @@
+import java.util.Scanner;
+public class Palindrome {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Scanner user_input = new Scanner(System.in);
+		int num;
+		System.out.println("Enter the num:");
+		num = user_input.nextInt();
+		//Checking for palindrome
+		int [] a ={};
+		int temp_num=num;
+		int temp=1,i=0,length=0,flag=0;
+		while(temp!=0)
+		{
+			temp = temp_num%10;
+			temp_num=temp_num/10;
+			a[i]=temp;
+			i++;
+			length++;
+			
+		}
+		
+		for(int j=0;j<=i;j++)
+		{
+			if(a[j]!= a[length])
+			{
+				flag=1;
+				break;
+				
+			}
+			length--;
+		}
+		if(flag==1){
+			System.out.println("Not a palin");
+		}
+		else{
+			System.out.println("Palin");
+			
+		}
+
+	}
+
+}

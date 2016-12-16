@@ -1,0 +1,34 @@
+import java.util.*;
+
+public class BubbleSort {
+
+	public static void swap(int a, int b) {
+		int temp = 0;
+		temp = b;
+		b = a;
+		a = temp;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//CTRL+SHIFT+F -->AutoFormat code
+		// int a[]=new int[5];
+		int a[] = { 32, 12, 34, 56, 2, 22, 67, 1 };
+
+		// Bubble sort algorithm
+		// iterating & -->scanning - so that larger elements bubble up
+		for (int j = 0; j < a.length; j++) {
+			for (int i = 0; i < (a.length - 2); i++) {
+				if (a[i] > a[i + 1]) {
+					swap(a[i], a[i + 1]);
+				}
+			}
+		}
+
+		for(int i=0;i<a.length;i++)
+		{
+			System.out.print(a[i]);
+			System.out.print(" ");
+		}
+	}
+}
