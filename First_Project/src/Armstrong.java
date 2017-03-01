@@ -23,6 +23,7 @@ public class Armstrong {
 		{
 			System.out.println("Not an as");
 		}
+		user_input.close();//to stop resource leak of scanner
 	}
 
 }

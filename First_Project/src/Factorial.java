@@ -17,6 +17,7 @@ public class Factorial {
 		}
 		System.out.println("Fact:");
 		System.out.println(fact);
+		user_input.close();//to stop resource leak of scanner
 	}
 
 }

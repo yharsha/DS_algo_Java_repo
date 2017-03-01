@@ -23,7 +23,7 @@ public class Palindrome {
 			System.out.println("Palin");
 		}
 		else System.out.println("Not a Palin");
-		
+		user_input.close();//to stop resource leak of scanner
 	}
 
 }

@@ -30,5 +30,7 @@ public class prime {
 			System.out.println(" prime");
 			}
 		else System.out.println("Not a Prime");
+		user_input.close();//to stop resource leak of scanner
 		}
+	
 }

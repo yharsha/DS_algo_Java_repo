@@ -1,0 +1,190 @@
+package trees;
+
+import java.util.*;
+
+public class Trees_Demo {
+	Tree_node root;
+
+	// creating a tree data structure
+	static class Tree_node {
+
+		Tree_node left;
+		int data;
+		Tree_node right;
+
+		Tree_node(Tree_node left, int data, Tree_node right) {
+			this.left = left;
+			this.data = data;
+			this.right = right;
+		}
+
+		Tree_node() {
+		}
+
+		Tree_node(int data) {
+			this.left = null;
+			this.data = data;
+			this.right = null;
+		}
+
+		public void set_dat_t(Tree_node left, int data, Tree_node right) {
+			this.left = left;
+			this.data = data;
+			this.right = right;
+		}
+
+	}
+
+	public void preOrder(Tree_node root) {
+		// DLR //node is visited before its sub trees
+		if (root == null) {
+			return;
+		}
+		Tree_node current = root;
+		System.out.print(current.data);
+		preOrder(current.left);
+		preOrder(current.right);
+	}
+
+	public void inOrder(Tree_node root) {
+		// DLR //node is visited before its sub trees
+		if (root == null) {
+			return;
+		}
+		Tree_node current = root;
+		inOrder(current.left);
+		System.out.print(current.data);
+		inOrder(current.right);
+	}
+
+	public void postOrder(Tree_node root) {
+		// DLR //node is visited before its sub trees
+		if (root == null) {
+			return;
+		}
+		Tree_node current = root;
+		postOrder(current.left);
+		postOrder(current.right);
+		System.out.print(current.data);
+	}
+
+	public void iterative_preOrder(Tree_node root) {
+		// get the current,push it childs to stack..repeat same
+		ArrayList<Integer> arrlist = new ArrayList<Integer>();
+		if (root == null) {
+			return;
+		}
+		Stack<Tree_node> s1 = new Stack<Tree_node>();
+		s1.push(root);
+		while (!s1.isEmpty()) {
+			Tree_node current = s1.pop();
+			arrlist.add(current.data);
+			if (current.right != null) {
+				s1.push(current.right);
+			}
+			if (current.left != null) {
+				s1.push(current.left);
+			}
+		}
+		Iterator<Integer> itr1 = arrlist.iterator();
+		while (itr1.hasNext()) {
+			System.out.print(itr1.next());
+		}
+	}
+
+	public void levelOrder(Tree_node root) {
+		if (root == null) {
+			return;
+		}
+		ArrayList<Integer> arr = new ArrayList<Integer>();
+		Queue<Tree_node> q1 = new LinkedList<Tree_node>();
+		q1.add(root);
+		while (!q1.isEmpty()) {
+			Tree_node temp = q1.remove();
+			arr.add(temp.data);
+			if (temp.left != null) {
+				q1.add(temp.left);
+			}
+			if (temp.right != null) {
+				q1.add(temp.right);
+			}
+		}
+
+		Iterator<Integer> itr1 = arr.iterator();
+		while (itr1.hasNext()) {
+			System.out.print(itr1.next());
+		}
+
+	}
+
+	public int treeMaxValue(Tree_node root) {
+		int max;
+		if (root == null) {
+			return Integer.MIN_VALUE;
+		}
+		int leftmax = treeMaxValue(root.left);
+		int rightmax = treeMaxValue(root.right);
+		if (leftmax > rightmax) {
+			max = leftmax;
+		} else
+			max = rightmax;
+		if (root.data > max) {
+			max = root.data;
+		}
+		return max;
+	}
+	//finding max of an element
+	public boolean findElement_t(Tree_node temp,int x)
+	{
+		if(temp==null){return false;}
+		if(temp.data==x){return true;}
+		else {
+		return (findElement_t(temp.left, x)|| findElement_t(temp.right, x));}
+	}
+	//insert an element
+	public void insert_t(Tree_node temp,int data)
+	{
+		if(temp==null){temp = new Tree_node(data);}
+		else if(data>root.data)
+		{
+			insert_t(temp.right,data);
+		}
+		else{
+			insert_t(temp.left,data);
+		}
+	}
+	public static void main(String[] args) {
+
+		Trees_Demo obj = new Trees_Demo();
+
+		Tree_node t7 = new Tree_node(null, 7, null);
+		Tree_node t6 = new Tree_node(null, 6, null);
+		Tree_node t5 = new Tree_node(null, 5, null);
+		Tree_node t4 = new Tree_node(null, 4, null);
+		Tree_node t3 = new Tree_node(t6, 3, t7);
+		Tree_node t2 = new Tree_node(t4, 2, t5);
+		Tree_node t1 = new Tree_node(t2, 1, t3);
+
+		obj.root = t1;
+		System.out.println("*********Preorder-DLR**********");
+		obj.preOrder(obj.root);
+		System.out.println("");
+		System.out.println("*********Preorder-DLR-iterative**********");
+		obj.iterative_preOrder(obj.root);
+		System.out.println("");
+		System.out.println("*********INorder**********");
+		obj.inOrder(obj.root);
+		System.out.println("");
+		System.out.println("*********Postorder**********");
+		obj.postOrder(obj.root);
+		System.out.println("");
+		System.out.println("*********Level order traversal**********");
+		obj.levelOrder(obj.root);
+		System.out.println("");
+		System.out.println("...............Max_Value:...........................");
+		System.out.println("Max_Value:" + obj.treeMaxValue(obj.root));
+		System.out.println("");
+		System.out.println("...............Findelement:...........................");
+		System.out.println("Findelement:" + obj.findElement_t(obj.root, 11));
+	}
+}
