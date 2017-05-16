@@ -2,20 +2,36 @@ package linkedlist;
 
 public class LinkedList {
 
-	Node head;
+	public Node head;
 
-	static class Node {
-		private int data;
-		private Node next;
+	public static class Node {
+		public int data;
+		public Node next;
 
-		Node(int d) {
+		public Node(int d) {
 			this.data = d;
+		}
+		public Node() {
+		}
+		
+		public int getData(Node temp) {
+			if (temp != null) {
+				return temp.data;
+			} else
+				return Integer.MIN_VALUE;
 		}
 
 	}
 
 	public Node getHead() {
 		return head;
+	}
+
+	public int getData(Node temp) {
+		if (temp != null) {
+			return temp.data;
+		} else
+			return Integer.MIN_VALUE;
 	}
 
 	// insert node at beginning
@@ -183,80 +199,86 @@ public class LinkedList {
 			return len;
 		}
 	}
-	
-	//**************************************
-	//reverese a llist
-	public void rev_list()
-	{
-		if(head==null){return;};
-		Node prev=null;
-		Node current=head;
-		Node next =current.next;
-		while(current.next!=null)
-		{
-			current.next=prev;
-			prev=current;
-			current=next;
-			next=next.next;
+
+	// **************************************
+	// reverese a llist
+	public void rev_list() {
+		if (head == null) {
+			return;
 		}
-		current.next=prev;
-		head=current;
-		
+		;
+		Node prev = null;
+		Node current = head;
+		Node next = current.next;
+		while (current.next != null) {
+			current.next = prev;
+			prev = current;
+			current = next;
+			next = next.next;
+		}
+		current.next = prev;
+		head = current;
+
 	}
-	
-	//reverse in pairs
-	public void reverse_in_pairs()
-	{
-		if(head==null){return;}
-		Node temp1=null;
-		Node temp2=head;
-		Node temp3=head.next;
-		while(temp2.next!=null)
-		{
-			//realign
-			if(temp1!=null){temp1.next=temp3;}
-			temp2.next=temp3.next;
-			temp3.next=temp2;
-			if(temp1==null){head=temp3;}
-			//shifting
-			if(temp2.next!=null){
-			temp3=temp2.next.next;
-			temp1=temp2;
-			temp2=temp2.next;
+
+	// reverse in pairs
+	public void reverse_in_pairs() {
+		if (head == null) {
+			return;
+		}
+		Node temp1 = null;
+		Node temp2 = head;
+		Node temp3 = head.next;
+		while (temp2.next != null) {
+			// realign
+			if (temp1 != null) {
+				temp1.next = temp3;
+			}
+			temp2.next = temp3.next;
+			temp3.next = temp2;
+			if (temp1 == null) {
+				head = temp3;
+			}
+			// shifting
+			if (temp2.next != null) {
+				temp3 = temp2.next.next;
+				temp1 = temp2;
+				temp2 = temp2.next;
 			}
 		}
 	}
-	//find position at value
-	public int positionOfValue(int val)
-	{
-		if (head == null) {return -1;}
-		
-		int pos=1;
+
+	// find position at value
+	public int positionOfValue(int val) {
+		if (head == null) {
+			return -1;
+		}
+
+		int pos = 1;
 		Node temp = head;
-		while(temp!=null)
-		{
-			if(temp.data==val)
-			{
+		while (temp != null) {
+			if (temp.data == val) {
 				return pos;
 			}
-			temp=temp.next;
+			temp = temp.next;
 			pos++;
 		}
 		return -1;
 	}
-	//string output of linked list
-	public String outputAsString()
-	{
-		if (head == null) {return "|";}
-		String result="[";
-		Node temp = head;
-		while(temp!=null)
-		{
-			result=result+","+temp.data;
-			temp=temp.next;
+
+	// string output of linked list
+	public String outputAsString() {
+		if (head == null) {
+			return "|";
 		}
-		return result+"]";
-		
+		String result = "[";
+		Node temp = head;
+		while (temp != null) {
+			result = result + "," + temp.data;
+			temp = temp.next;
+		}
+		return result + "]";
+
 	}
 
 	public static void main(String[] args) {
@@ -323,7 +345,7 @@ public class LinkedList {
 		System.out.println(".........Del at position.......");
 		l1.print_list();
 		System.out.println("Len:" + l1.lengthOfList());
-//		l1.deleteAtposition(7);
+		// l1.deleteAtposition(7);
 		//
 		// System.out.println(".........Del at position.......");
 		// l1.print_list();
@@ -333,16 +355,16 @@ public class LinkedList {
 		// System.out.println(".........Del at position.......");
 		// l1.print_list();
 		// System.out.println("Len:" + l1.lengthOfList());
-		
-		System.out.println("String Format:"+l1.outputAsString());
-		
-		System.out.println("position of 0 is :"+l1.positionOfValue(0));
-		System.out.println("position of 1 is :"+l1.positionOfValue(1));
-		System.out.println("position of 4 is :"+l1.positionOfValue(4));
-		System.out.println("position of 6 is :"+l1.positionOfValue(6));
-		System.out.println("position of 5 is :"+l1.positionOfValue(5));
-		System.out.println("position of 12 is :"+l1.positionOfValue(12));
-		
+
+		System.out.println("String Format:" + l1.outputAsString());
+
+		System.out.println("position of 0 is :" + l1.positionOfValue(0));
+		System.out.println("position of 1 is :" + l1.positionOfValue(1));
+		System.out.println("position of 4 is :" + l1.positionOfValue(4));
+		System.out.println("position of 6 is :" + l1.positionOfValue(6));
+		System.out.println("position of 5 is :" + l1.positionOfValue(5));
+		System.out.println("position of 12 is :" + l1.positionOfValue(12));
+
 		System.out.println(".........Normal list.......");
 		l1.print_list();
 		System.out.println(".........Reversed list.......");
@@ -351,7 +373,7 @@ public class LinkedList {
 		System.out.println(".........Reversed list in pairs of 2.......");
 		l1.reverse_in_pairs();
 		l1.print_list();
-		
+
 	}
 
 }
