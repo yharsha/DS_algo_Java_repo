@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete 9 resources" deleteContents="false" description="Delete 9 resources" element1="/in28minutes-spring-real-world-business" element2="/in28minutes-spring-real-world-business-api" element3="/in28minutes-spring-real-world-business-impl" element4="/in28minutes-spring-real-world-data" element5="/in28minutes-spring-real-world-data-api" element6="/in28minutes-spring-real-world-data-impl" element7="/in28minutes-spring-real-world-model" element8="/in28minutes-spring-real-world-parent" element9="/spring-basic-example" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="9" stamp="1498883144904"/>
+</session>

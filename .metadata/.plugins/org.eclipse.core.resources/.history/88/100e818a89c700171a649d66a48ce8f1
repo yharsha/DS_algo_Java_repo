@@ -1,0 +1,22 @@
+package dynamic_programming;
+
+import java.util.Scanner;
+
+public class LongestCommonSeq {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner s = new Scanner(System.in);
+int testCases = s.nextInt();
+for(int i=0;i<testCases;i++)
+{
+    int l1=s.nextInt();
+    int l2=s.nextInt();
+        String s1,s2;
+     s1 = s.nextLine();
+     s2 = s.nextLine();
+}
+
+	}
+
+}

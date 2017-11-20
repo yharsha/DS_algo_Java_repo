@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Myprojects\SpringIn28Minutes-master"/>
 			<item value="C:\Users\I321790\Documents\Blue\API- encrypt_decrypt"/>
 		</list>
 		<list key="projectNameTemplate">
