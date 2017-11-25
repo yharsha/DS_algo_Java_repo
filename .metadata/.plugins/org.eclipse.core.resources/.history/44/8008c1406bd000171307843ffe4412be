@@ -1,0 +1,10 @@
+package iproblems;
+
+public class Harmonictriplet {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
