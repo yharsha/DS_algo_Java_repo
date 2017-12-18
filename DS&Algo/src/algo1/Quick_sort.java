@@ -9,11 +9,13 @@ public class Quick_sort {
 		int pivot=a[end],index=start;
 		for(int i=start;i<=end;i++)
 		{
-			if(a[i]<pivot && index!=i)
+			if(a[i]<pivot )
 			{
+				if( index!=i){
 				int temp=a[index];
 				a[index]=a[i];
 				a[i]=temp;
+				}
 				index++;
 			}
 		}
