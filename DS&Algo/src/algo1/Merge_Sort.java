@@ -27,7 +27,7 @@ while(l_index<=mid&&r_index<=hi)
 				r_index++;
 				i++;
 			}
-			else if(a[l_index]<a[r_index])
+			else if(a[l_index]<=a[r_index])
 			{
 				b[i]=a[l_index];
 				l_index++;
