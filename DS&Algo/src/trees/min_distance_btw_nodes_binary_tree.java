@@ -1,25 +1,14 @@
-/*
-Please note that it's Function problem i.e.
-you need to write your solution in the form of Function(s) only.
-Driver Code to call/invoke your function would be added by GfG's Online Judge.*/
+package trees;
 
 
-// FUNCTION CODE
-/* A Binary Tree node
-class Node
-{
-    int data;
-    Node left, right;
-   Node(int item)    {
-        data = item;
-        left = right = null;
-    }
-} */
-/* Should return minimum distance between a and b 
-   in a tree with given root*/
-class GfG
-{
-     Node findLCA (Node node, int n1,int n2)
+public class min_distance_btw_nodes_binary_tree {
+	
+	private class Node{
+		int data;
+		Node left,right;
+	}
+	
+	Node findLCA (Node node, int n1,int n2)
     {
         if(node==null){return null;}
         
@@ -70,4 +59,5 @@ class GfG
 
 
     }
+
 }
