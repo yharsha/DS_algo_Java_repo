@@ -5,17 +5,17 @@ create a  Restful Web Service application using Spring Boot and having the 4 fun
 
 The data that the user will be received is in XML or JSON format. 
 
-##Read (GET method)
+## Read (GET method).
         GET http://localhost:8080/employees
         GET http://localhost:8080/employee/E01
 
-##Update (PUT method).
+## Update (PUT method).
         PUT http://localhost:8080/employee
         
-##Create (POST method)
+## Create (POST method).
         POST http://localhost:8080/employee
         
-##Delete (DELETE method)
+## Delete (DELETE method).
         DELETE  http://localhost:8080/employee/{empNo}
        
 
