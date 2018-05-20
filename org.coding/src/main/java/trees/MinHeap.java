@@ -66,43 +66,39 @@ public class MinHeap {
 			System.out.println("Heap is Full");
 			return;
 		}
-		
-		int i=count;//last pos
-		arr[i]=data;
+
+		int i = count;// last pos
+		arr[i] = data;
 		count++;
-		//percolate up to maintain heap property
-		while(i>=0 && data < arr[(i-1)/2])
-		{
-			arr[i]=arr[(i-1)/2];
-			arr[(i-1)/2]=data;
-			i=getParent(i);
+		// percolate up to maintain heap property
+		while (i >= 0 && data < arr[(i - 1) / 2]) {
+			arr[i] = arr[(i - 1) / 2];
+			arr[(i - 1) / 2] = data;
+			i = getParent(i);
 		}
 
 	}
-	
-	/*1.copy the last element to root and percolatedown from root*/
-	public int ExtractMin()
-	{
-		if(count==0)return -1;
-		int data=arr[0];
-		arr[0]=arr[count-1];
+
+	/* 1.copy the last element to root and percolatedown from root */
+	public int ExtractMin() {
+		if (count == 0)
+			return -1;
+		int data = arr[0];
+		arr[0] = arr[count - 1];
 		count--;
 		percolateDown(0);
 		return data;
 	}
-	
-	public  void printHeap()
-	{
-		for(int i=0;i<count;i++)
-		{
-			System.out.print(arr[i]+" ");
+
+	public void printHeap() {
+		for (int i = 0; i < count; i++) {
+			System.out.print(arr[i] + " ");
 		}
 		System.out.println("------------");
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		MinHeap h=new MinHeap(20);
+		MinHeap h = new MinHeap(20);
 		h.insert(3);
 		h.insert(2);
 		h.insert(1);
@@ -112,7 +108,7 @@ public class MinHeap {
 		h.insert(45);
 		h.insert(0);
 		h.printHeap();
-		System.out.println("Removing the min value :"+h.ExtractMin());
+		System.out.println("Removing the min value :" + h.ExtractMin());
 		h.printHeap();
 	}
 
