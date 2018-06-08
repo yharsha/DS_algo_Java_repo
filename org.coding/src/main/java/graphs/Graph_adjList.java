@@ -3,14 +3,17 @@ package graphs;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class Graph_adjList {
 	int vertices;
+	boolean visited[];
 	LinkedList<Integer>[] arr;
 
 	Graph_adjList(int vertices) {
 		this.vertices = vertices;
 		arr = new LinkedList[vertices];
+		visited = new boolean[vertices];
 		for (int i = 0; i < vertices; i++) {
 			arr[i] = new LinkedList<Integer>();
 		}
@@ -76,6 +79,43 @@ public class Graph_adjList {
 		DFS_Util(node, visited);
 	}
 
+	/*
+	 * Topological sorting for Directed Acyclic Graph (DAG) is a linear ordering of
+	 * vertices such that for every directed edge uv, vertex u comes before v in the
+	 * ordering.
+	 */
+	void topologicalSortUtil(int vertex, Stack<Integer> stack) {
+		// all child vertices has to be added...before adding it to stack.
+		visited[vertex]=true;
+		Iterator<Integer> it = arr[vertex].iterator();
+		int x;
+		while (it.hasNext()) {
+			x = (Integer) it.next();
+			if (!visited[x]) {
+				topologicalSortUtil(x, stack);
+			}
+		}
+		stack.push(vertex);
+	}
+
+	void topologicalSort() {
+		Stack<Integer> stack = new Stack<Integer>();
+		char[] ch= new char[vertices];
+		for (int i = 0; i < this.vertices; i++) {
+			ch[i]=(char)(65+i);
+			if (!visited[i]) {
+				topologicalSortUtil(i, stack);
+			}
+		}
+	
+		
+		System.out.println("Topological  list of graph: ");
+		while (!stack.isEmpty()) {
+			System.out.print(ch[stack.pop()] + " ");
+		}
+	}
+	
+
 	void printGraph(Graph_adjList graph) {
 		for (int v = 0; v < graph.vertices; v++) {
 			System.out.println("Adjacency list of vertex " + v);
@@ -104,6 +144,16 @@ public class Graph_adjList {
 		System.out.println("Below BFS ABOVE DFS");
 		/* becareful of visited array */
 		graph.BFS(2);
+
+		Graph_adjList projGraph = new Graph_adjList(6);
+		projGraph.addEdge(0, 3);
+		projGraph.addEdge(5, 1);
+		projGraph.addEdge(1, 3);
+		projGraph.addEdge(5, 0);
+		projGraph.addEdge(3, 2);
+		projGraph.printGraph(graph);
+		projGraph.topologicalSort();
+
 	}
 
 }
