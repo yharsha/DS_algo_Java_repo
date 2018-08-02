@@ -1,7 +1,9 @@
 package graphs;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -86,7 +88,7 @@ public class Graph_adjList {
 	 */
 	void topologicalSortUtil(int vertex, Stack<Integer> stack) {
 		// all child vertices has to be added...before adding it to stack.
-		visited[vertex]=true;
+		visited[vertex] = true;
 		Iterator<Integer> it = arr[vertex].iterator();
 		int x;
 		while (it.hasNext()) {
@@ -100,21 +102,19 @@ public class Graph_adjList {
 
 	void topologicalSort() {
 		Stack<Integer> stack = new Stack<Integer>();
-		char[] ch= new char[vertices];
+		char[] ch = new char[vertices];
 		for (int i = 0; i < this.vertices; i++) {
-			ch[i]=(char)(65+i);
+			ch[i] = (char) (65 + i);
 			if (!visited[i]) {
 				topologicalSortUtil(i, stack);
 			}
 		}
-	
-		
+
 		System.out.println("Topological  list of graph: ");
 		while (!stack.isEmpty()) {
 			System.out.print(ch[stack.pop()] + " ");
 		}
 	}
-	
 
 	void printGraph(Graph_adjList graph) {
 		for (int v = 0; v < graph.vertices; v++) {
@@ -125,6 +125,46 @@ public class Graph_adjList {
 			}
 			System.out.println("\n");
 		}
+	}
+
+	/*
+	 * Hamiltonian Path is a path in a directed or undirected graph that visits each
+	 * vertex exactly once
+	 */
+	public  void printAllHamiltonianPaths(Graph_adjList g, int curr, boolean[] visited, List<Integer> path,
+			int N) {
+		if (path.size() == N) {
+			for (int i : path) {
+				System.out.print(i + " ");
+			}
+			System.out.println();
+			return;
+		}
+		Iterator<Integer> it = g.arr[curr].iterator();
+		while (it.hasNext()) {
+			int x = (int) it.next();
+			if (!visited[x]) {
+				visited[x] = true;
+				path.add(x);
+				printAllHamiltonianPaths(g, x, visited, path, N);
+
+				// backtrack
+				visited[x] = false;
+				path.remove(path.size() - 1);
+			}
+		}
+
+	}
+
+	public  void findHamiltonPaths(Graph_adjList g, int curr, int N) {
+		int start = curr;
+		List<Integer> path = new ArrayList();
+		path.add(start);
+
+		boolean[] temp = new boolean[N];
+		temp[start] = true;
+		printAllHamiltonianPaths(g, start, temp, path, N);
+
 	}
 
 	public static void main(String[] args) {
@@ -153,7 +193,23 @@ public class Graph_adjList {
 		projGraph.addEdge(3, 2);
 		projGraph.printGraph(graph);
 		projGraph.topologicalSort();
+		
+		System.out.println("....Hamilton Paths...");
 
+		Graph_adjList HamiltonGraph = new Graph_adjList(6);
+		HamiltonGraph.addEdge(0, 1);
+		HamiltonGraph.addEdge(1, 0);
+		HamiltonGraph.addEdge(0, 2);
+		HamiltonGraph.addEdge(2, 0);
+		HamiltonGraph.addEdge(0, 3);
+		HamiltonGraph.addEdge(3, 0);
+		HamiltonGraph.addEdge(2, 1);
+		HamiltonGraph.addEdge(1, 2);
+		HamiltonGraph.addEdge(3, 1);
+		HamiltonGraph.addEdge(1, 3);
+		HamiltonGraph.addEdge(3, 2);
+		HamiltonGraph.addEdge(2, 3);
+		HamiltonGraph.findHamiltonPaths(HamiltonGraph, 0, 4);
 	}
 
 }
